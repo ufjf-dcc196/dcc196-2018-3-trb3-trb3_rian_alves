@@ -2,7 +2,7 @@ package dcc196.ufjf.br.maissaude.DAO;
 
 import android.provider.BaseColumns;
 
-public class UsfContract {
+public class SaudeContract {
     public final class USF implements BaseColumns {
         public final static String TABLE_NAME = "Usf";
         public final static String COLUMN_NAME_UNIDADE = "nome";
