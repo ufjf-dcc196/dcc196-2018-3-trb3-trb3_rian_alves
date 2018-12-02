@@ -4,13 +4,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BuscaUnidade">
+    tools:context=".BuscaUnidadeActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/txtTituloBusca"
+        android:layout_width="528dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="36dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="1dp"
+        android:text="Encontre sua Unidade de Saúde da Família por meio do CEP de sua casa"
+        app:layout_constraintBottom_toTopOf="@+id/edt_CEP"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edt_CEP"
         android:layout_width="wrap_content"
-        android:layout_height="41dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="115dp"
-        tools:layout_editor_absoluteY="50dp" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="17dp"
+        android:ems="10"
+        android:hint="CEP"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/btn_buscar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTituloBusca" />
+
+    <Button
+        android:id="@+id/btn_buscar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="59dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginRight="37dp"
+        android:text="Buscar Unidade"
+        app:layout_constraintBottom_toTopOf="@+id/txt_dados_unidade"
+        app:layout_constraintEnd_toEndOf="@+id/edt_CEP"
+        app:layout_constraintTop_toBottomOf="@+id/edt_CEP" />
+
+    <EditText
+        android:id="@+id/txt_dados_unidade"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="163dp"
+        android:layout_marginEnd="69dp"
+        android:layout_marginLeft="69dp"
+        android:layout_marginRight="69dp"
+        android:layout_marginStart="69dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_buscar" />
+
 </android.support.constraint.ConstraintLayout>
