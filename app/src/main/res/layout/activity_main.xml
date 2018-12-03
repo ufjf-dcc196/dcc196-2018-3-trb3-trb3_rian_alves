@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    tools:layout_editor_absoluteY="81dp">
 
     <TextView
         android:id="@+id/txtTitulo"
@@ -14,16 +15,15 @@
         android:layout_marginTop="16dp"
         android:text="Mais Saúde"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.032" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txt_identificacao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="15dp"
         android:text="Rian das Dores Alves - 201676040"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,33 +35,45 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
         android:text="Buscar USF "
         app:layout_constraintBottom_toTopOf="@+id/txt_identificacao"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_agenda" />
+        app:layout_constraintStart_toStartOf="@+id/btn_cadastrar"
+        app:layout_constraintTop_toBottomOf="@+id/btn_cadastrar" />
 
     <Button
         android:id="@+id/btn_agenda"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="25dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="23dp"
+        android:layout_marginStart="23dp"
         android:text="Agenda"
-        app:layout_constraintBottom_toTopOf="@+id/btn_usf"
-        app:layout_constraintStart_toStartOf="@+id/btn_usf"
+        app:layout_constraintBottom_toTopOf="@+id/btn_cadastrar"
+        app:layout_constraintStart_toStartOf="@+id/btn_cadastrar"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="108dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="122dp"
+        android:layout_marginBottom="73dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_agenda"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtTitulo"
         app:srcCompat="@android:color/holo_blue_dark" />
+
+    <Button
+        android:id="@+id/btn_cadastrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="11dp"
+        android:text="Cadastrar USF"
+        app:layout_constraintBottom_toTopOf="@+id/btn_usf"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_agenda" />
 
 </android.support.constraint.ConstraintLayout>
