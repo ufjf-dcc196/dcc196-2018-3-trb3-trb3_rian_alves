@@ -3,29 +3,23 @@ package dcc196.ufjf.br.maissaude.DAO;
 import android.provider.BaseColumns;
 
 public class SaudeContract {
-    public final class USF implements BaseColumns {
-        public final static String TABLE_NAME = "Usf";
+    public final class Unidade implements BaseColumns {
+        public final static String TABLE_NAME = "Unidade";
         public final static String COLUMN_NAME_UNIDADE = "nome";
-        public static final String COLUMN_NAME_CEP = "cep";
+        public static final String COLUMN_NAME_CEP_USUARIO = "cepUsuario";
+        public static final String COLUMN_NAME_CEP_UNIDADE = "cepUnidade";
+        public static final String COLUMN_NAME_TIPO = "tipo";
+        public static final String COLUMN_NAME_NUMERO = "numero";
         public static final String COLUMN_NAME_FOTO = "foto";
-        public final static String CREATE_UNIDADE  = "CREATE TABLE "+USF.TABLE_NAME+" ("
-                + USF._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + USF.COLUMN_NAME_UNIDADE+ " TEXT, "
-                + USF.COLUMN_NAME_CEP+ " TEXT,"
-                + USF.COLUMN_NAME_FOTO+ " TEXT"
+        public final static String CREATE_UNIDADE  = "CREATE TABLE "+Unidade.TABLE_NAME+" ("
+                + Unidade._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + Unidade.COLUMN_NAME_UNIDADE+ " TEXT, "
+                + Unidade.COLUMN_NAME_CEP_USUARIO+ " TEXT,"
+                + Unidade.COLUMN_NAME_CEP_UNIDADE+ " TEXT,"
+                + Unidade.COLUMN_NAME_TIPO+ " TEXT,"
+                + Unidade.COLUMN_NAME_NUMERO+ " TEXT,"
+                + Unidade.COLUMN_NAME_FOTO+ " TEXT"
                 +")";
-        public final static String DROP_USF = "DROP TABLE IF EXISTS "+USF.TABLE_NAME;
-    }
-
-    public final class Area implements BaseColumns {
-        public final static String TABLE_NAME = "Area";
-        public final static String COLUMN_NAME_CEP = "cep";
-        public static final String COLUMN_NAME_ID_USF = "idUSF";
-        public final static String CREATE_AREA  = "CREATE TABLE "+Area.TABLE_NAME+" ("
-                + Area._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + Area.COLUMN_NAME_CEP+ " TEXT, "
-                + Area.COLUMN_NAME_ID_USF+ " TEXT,"
-                +")";
-        public final static String DROP_AREA = "DROP TABLE IF EXISTS "+Area.TABLE_NAME;
+        public final static String DROP_USF = "DROP TABLE IF EXISTS "+Unidade.TABLE_NAME;
     }
 }
