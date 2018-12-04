@@ -7,13 +7,23 @@ public class Registro {
     private String CEPUnidade;
     private String tipo;
     private int numero;
+    private String foto;
 
-    public Registro(String nomeUnidade, String CEPUsuario, String CEPUnidade, String tipo, int numero) {
+    public Registro(String nomeUnidade, String CEPUsuario, String CEPUnidade, String tipo, int numero,String foto) {
         this.nomeUnidade = nomeUnidade;
         this.CEPUsuario = CEPUsuario;
         this.CEPUnidade = CEPUnidade;
         this.tipo = tipo;
         this.numero = numero;
+        this.foto = foto;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 
     public String getNomeUnidade() {
