@@ -2,20 +2,34 @@ package dcc196.ufjf.br.maissaude.Modelo;
 
 public class Registro {
 
-    private String nomeUnidade;
+    private int id;
+
+       private String nomeUnidade;
     private String CEPUsuario;
     private String CEPUnidade;
     private String tipo;
     private int numero;
     private String foto;
 
-    public Registro(String nomeUnidade, String CEPUsuario, String CEPUnidade, String tipo, int numero,String foto) {
+    public Registro() {
+
+    }
+
+    public Registro(String nomeUnidade, String CEPUsuario, String CEPUnidade, String tipo, int numero, String foto) {
         this.nomeUnidade = nomeUnidade;
         this.CEPUsuario = CEPUsuario;
         this.CEPUnidade = CEPUnidade;
         this.tipo = tipo;
         this.numero = numero;
         this.foto = foto;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFoto() {

@@ -9,7 +9,7 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
     Button btnBuscarCEP;
-    Button btnCadastrarUnidade;
+    Button btnBuscarUnidade;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         btnBuscarCEP = (Button) findViewById(R.id.btn_usf);
-        btnCadastrarUnidade = (Button) findViewById(R.id.btn_cadastrar);
+        btnBuscarUnidade = (Button) findViewById(R.id.btn_cadastrar);
 
         btnBuscarCEP.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnCadastrarUnidade.setOnClickListener(new View.OnClickListener() {
+        btnBuscarUnidade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, CadastrarUnidadeActivity.class);

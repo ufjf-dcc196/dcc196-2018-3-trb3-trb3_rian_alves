@@ -4,119 +4,156 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/holo_blue_dark"
     tools:context=".CadastrarUnidadeActivity"
     tools:layout_editor_absoluteY="81dp">
 
     <EditText
         android:id="@+id/edt_CEP2"
-        android:layout_width="136dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginStart="16dp"
         android:ems="10"
         android:hint="CEP"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toStartOf="@+id/btn_buscar2"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintEnd_toStartOf="@+id/sp_tipo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/sp_tipo" />
 
     <Button
         android:id="@+id/btn_buscar2"
-        android:layout_width="wrap_content"
+        android:layout_width="134dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="76dp"
-        android:layout_marginRight="76dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginBottom="46dp"
         android:text="Buscar "
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/edt_nome_usf"
-        android:layout_width="232dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:ems="10"
-        android:hint="Nome da Unidade"
-        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/txt_unidade"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="129dp" />
+        app:layout_constraintTop_toBottomOf="@+id/sp_tipo" />
 
     <TextView
         android:id="@+id/txt_logradouro"
-        android:layout_width="5dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.212"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_nome_usf" />
+        android:layout_marginEnd="17dp"
+        android:layout_marginLeft="62dp"
+        android:layout_marginRight="17dp"
+        android:layout_marginStart="62dp"
+        android:hint="Logradouro"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txt_numero"
+        app:layout_constraintEnd_toStartOf="@+id/txt_numero"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/txt_bairro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.209"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_logradouro" />
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="11dp"
+        android:layout_marginEnd="46dp"
+        android:layout_marginLeft="46dp"
+        android:layout_marginRight="46dp"
+        android:layout_marginStart="46dp"
+        android:hint="Bairro"
+        app:layout_constraintBottom_toTopOf="@+id/txt_uf"
+        app:layout_constraintEnd_toEndOf="@+id/txt_uf"
+        app:layout_constraintStart_toStartOf="@+id/edt_CEP2"
+        app:layout_constraintTop_toBottomOf="@+id/txt_numero" />
 
     <TextView
         android:id="@+id/txt_localidade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="22dp"
+        android:layout_marginBottom="17dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginLeft="62dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="11dp"
+        android:hint="Cidade"
+        app:layout_constraintBottom_toTopOf="@+id/imageView2"
         app:layout_constraintEnd_toStartOf="@+id/txt_uf"
-        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_bairro"
-        app:layout_constraintVertical_bias="0.056" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_bairro" />
 
     <TextView
         android:id="@+id/txt_uf"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="115dp"
+        android:layout_marginRight="115dp"
+        android:hint="UF"
+        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txt_localidade"
+        app:layout_constraintTop_toBottomOf="@+id/txt_bairro" />
+
+    <Spinner
+        android:id="@+id/sp_tipo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="7dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_buscar2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/edt_CEP2"
+        app:layout_constraintTop_toBottomOf="@+id/txtTitulo2" />
+
+    <TextView
+        android:id="@+id/txt_numero"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="148dp"
-        android:layout_marginEnd="216dp"
-        android:layout_marginRight="216dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_cadastrarusf"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_marginBottom="11dp"
+        android:layout_marginEnd="88dp"
+        android:layout_marginRight="88dp"
+        android:hint="Número"
+        app:layout_constraintBottom_toTopOf="@+id/txt_bairro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txt_logradouro"
+        app:layout_constraintTop_toBottomOf="@+id/txt_unidade" />
 
-    <Button
-        android:id="@+id/btn_cadastrarusf"
-        android:layout_width="106dp"
+    <TextView
+        android:id="@+id/txt_unidade"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:text="CADASTRAR"
+        android:layout_marginBottom="13dp"
+        android:hint="Unidade"
+        app:layout_constraintBottom_toTopOf="@+id/txt_numero"
+        app:layout_constraintStart_toStartOf="@+id/txt_logradouro"
+        app:layout_constraintTop_toBottomOf="@+id/btn_buscar2" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="216dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_uf"
+        app:srcCompat="@color/colorPrimary" />
+
+    <TextView
+        android:id="@+id/txtTitulo2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="16dp"
+        android:text="Insira seu CEP e escolha o tipo de serviço, para encontrar a unidade mais próxima de sua casa"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        app:fontFamily="sans-serif"
+        app:layout_constraintBottom_toTopOf="@+id/sp_tipo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

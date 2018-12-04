@@ -15,14 +15,13 @@ public class SaudeDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(SaudeContract.USF.CREATE_UNIDADE);
-        db.execSQL(SaudeContract.Area.CREATE_AREA);
+        db.execSQL(SaudeContract.Unidade.CREATE_UNIDADE);
+       
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL(SaudeContract.USF.DROP_USF);
-        db.execSQL(SaudeContract.Area.DROP_AREA);
+        db.execSQL(SaudeContract.Unidade.DROP_USF);
         onCreate(db);
     }
 
