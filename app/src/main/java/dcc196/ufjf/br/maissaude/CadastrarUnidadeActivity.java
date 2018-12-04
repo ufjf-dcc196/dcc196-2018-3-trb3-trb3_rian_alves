@@ -3,6 +3,8 @@ package dcc196.ufjf.br.maissaude;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -11,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +21,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import dcc196.ufjf.br.maissaude.DAO.SaudeContract;
@@ -113,7 +117,7 @@ public class CadastrarUnidadeActivity extends AppCompatActivity {
                             if(!response.isSuccessful()){
                                 Toast.makeText(
                                         getApplicationContext(),
-                                        "Erro",
+                                        "Erro, este CEP não está cadastrado",
                                         Toast.LENGTH_LONG).show();
                             } else{
                                 CEP cep = response.body();
@@ -123,6 +127,18 @@ public class CadastrarUnidadeActivity extends AppCompatActivity {
                                 txtBairro.setText(cep.getBairro().toString());
                                 txtLocalidade.setText(cep.getLocalidade().toString());
                                 txtUF.setText(cep.getUf().toString());
+
+                                File imagem = new File(reg.getFoto());
+                                if (imagem.exists())
+                                {
+                                    Bitmap bitmap = BitmapFactory.decodeFile(imagem.getAbsolutePath());
+                                    ImageView imagemEscolhida = (ImageView) findViewById(R.id.imageView2);
+                                    imagemEscolhida.setImageBitmap(bitmap);
+                                }else{
+                                    Bitmap bitmap = BitmapFactory.decodeFile("C:\\Users\\Rian Alves\\MaisSaude\\app\\src\\main\\res\\drawable\\logo.png");
+                                    ImageView imagemEscolhida = (ImageView) findViewById(R.id.imageView2);
+                                    imagemEscolhida.setImageBitmap(bitmap);
+                                }
                                 Log.d("CEP: ",cep.toString());
 
                             }
@@ -189,7 +205,7 @@ public class CadastrarUnidadeActivity extends AppCompatActivity {
         lstRegistros.add(registro4);
 
 
-        for(int i =0 ; i< lstRegistros.size(); i++) {
+        for(int i =0 ; i<= lstRegistros.size(); i++) {
             SQLiteDatabase db = dbHelper.getWritableDatabase();
             ContentValues valores = new ContentValues();
             valores.put(SaudeContract.Unidade.COLUMN_NAME_UNIDADE,lstRegistros.get(i).getNomeUnidade()) ;
