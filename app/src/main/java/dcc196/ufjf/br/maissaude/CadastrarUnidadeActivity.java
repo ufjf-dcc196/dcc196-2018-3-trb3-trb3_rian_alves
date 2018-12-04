@@ -1,5 +1,6 @@
 package dcc196.ufjf.br.maissaude;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -17,6 +18,8 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.ArrayList;
+
 import dcc196.ufjf.br.maissaude.DAO.SaudeContract;
 import dcc196.ufjf.br.maissaude.DAO.SaudeDBHelper;
 import dcc196.ufjf.br.maissaude.Modelo.CEP;
@@ -31,9 +34,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CadastrarUnidadeActivity extends AppCompatActivity {
 
+    private  Registro registro,registro1,registro2,registro3,registro4;
+    private  ArrayList<Registro> lstRegistros = new ArrayList<Registro>();
+
     private EditText edtCEP;
     private TextView txtNomeUnidade;
     private TextView txtLogradouro;
+    private TextView txtNumero;
     private TextView txtBairro;
     private TextView txtLocalidade;
     private TextView txtUF;
@@ -50,6 +57,10 @@ public class CadastrarUnidadeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastrar_unidade);
 
+        dbHelper = new SaudeDBHelper(getApplicationContext());
+
+        //CarregarBD();
+
         ArrayAdapter<String> adapterTipo = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,tipos);
         adapterTipo.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
 
@@ -58,6 +69,7 @@ public class CadastrarUnidadeActivity extends AppCompatActivity {
         edtCEP = (EditText)findViewById(R.id.edt_CEP2);
         txtNomeUnidade = (TextView) findViewById(R.id.txt_unidade);
         txtLogradouro = (TextView) findViewById(R.id.txt_logradouro);
+        txtNumero = (TextView) findViewById(R.id.txt_numero);
         txtBairro = (TextView) findViewById(R.id.txt_bairro);
         txtLocalidade = (TextView) findViewById(R.id.txt_localidade);
         txtUF = (TextView) findViewById(R.id.txt_uf);
@@ -92,9 +104,9 @@ public class CadastrarUnidadeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Registro registro = buscaUnidade(edtCEP.getText().toString(),spTipos.getSelectedItem().toString());
+                final Registro reg = buscaUnidade(edtCEP.getText().toString(),spTipos.getSelectedItem().toString());
 
-                    Call<CEP> callDadosCEP = serviceCEP.getEnderecoByCEP(registro.getCEPUnidade());
+                    Call<CEP> callDadosCEP = serviceCEP.getEnderecoByCEP(reg.getCEPUnidade());
                     callDadosCEP.enqueue(new Callback<CEP>() {
                         @Override
                         public void onResponse(Call<CEP> call, Response<CEP> response) {
@@ -105,6 +117,8 @@ public class CadastrarUnidadeActivity extends AppCompatActivity {
                                         Toast.LENGTH_LONG).show();
                             } else{
                                 CEP cep = response.body();
+                                txtNomeUnidade.setText(reg.getNomeUnidade());
+                                txtNumero.setText(String.valueOf(reg.getNumero()));
                                 txtLogradouro.setText(cep.getLogradouro().toString());
                                 txtBairro.setText(cep.getBairro().toString());
                                 txtLocalidade.setText(cep.getLocalidade().toString());
@@ -135,7 +149,7 @@ public class CadastrarUnidadeActivity extends AppCompatActivity {
 
         Cursor cursor = db.query(SaudeContract.Unidade.TABLE_NAME,new String[]{SaudeContract.Unidade._ID,SaudeContract.Unidade.COLUMN_NAME_UNIDADE,SaudeContract.Unidade.COLUMN_NAME_CEP_USUARIO
                 ,SaudeContract.Unidade.COLUMN_NAME_CEP_UNIDADE,SaudeContract.Unidade.COLUMN_NAME_TIPO,SaudeContract.Unidade.COLUMN_NAME_NUMERO,
-                SaudeContract.Unidade.COLUMN_NAME_FOTO}, SaudeContract.Unidade.COLUMN_NAME_CEP_USUARIO + "= ? AND" +
+                SaudeContract.Unidade.COLUMN_NAME_FOTO}, SaudeContract.Unidade.COLUMN_NAME_CEP_USUARIO + "= ? AND " +
                 SaudeContract.Unidade.COLUMN_NAME_TIPO +"= ?",new String[]{String.valueOf(cepUsuario),String.valueOf(tipo)},
                 null,null,null);
         if (cursor!=null)
@@ -143,7 +157,7 @@ public class CadastrarUnidadeActivity extends AppCompatActivity {
             cursor.moveToFirst();
             if(cursor.getCount()>0)
             {
-                registro.setId(cursor.getInt(0));
+                registro.setId(cursor.getLong(0));
                 registro.setNomeUnidade(cursor.getString(1));
                 registro.setCEPUsuario(cursor.getString(2));
                 registro.setCEPUnidade(cursor.getString(3));
@@ -159,6 +173,34 @@ public class CadastrarUnidadeActivity extends AppCompatActivity {
         }
         db.close();
         return registro;
+    }
+
+    public void CarregarBD() {
+        registro = new Registro("USF Mãe Preta", "25812050", "25815080", "Atenção Básica", 443, "");
+        registro1 = new Registro("USF Mãe Preta", "25815080", "25815080", "Atenção Básica", 443, "");
+        registro2 = new Registro("USF Mãe Preta", "25815070", "25815080", "Atenção Básica", 443, "");
+        registro3 = new Registro("UPA-Três Rios", "25812050", "25820180", "Pronto Atendimento", 10, "");
+        registro4 = new Registro("Central de Imunização", "25812050", "25805022 ", "Imunização", 300, "");
+
+        lstRegistros.add(registro);
+        lstRegistros.add(registro1);
+        lstRegistros.add(registro2);
+        lstRegistros.add(registro3);
+        lstRegistros.add(registro4);
+
+
+        for(int i =0 ; i< lstRegistros.size(); i++) {
+            SQLiteDatabase db = dbHelper.getWritableDatabase();
+            ContentValues valores = new ContentValues();
+            valores.put(SaudeContract.Unidade.COLUMN_NAME_UNIDADE,lstRegistros.get(i).getNomeUnidade()) ;
+            valores.put(SaudeContract.Unidade.COLUMN_NAME_CEP_USUARIO, lstRegistros.get(i).getCEPUsuario());
+            valores.put(SaudeContract.Unidade.COLUMN_NAME_CEP_UNIDADE, lstRegistros.get(i).getCEPUnidade());
+            valores.put(SaudeContract.Unidade.COLUMN_NAME_TIPO, lstRegistros.get(i).getTipo());
+            valores.put(SaudeContract.Unidade.COLUMN_NAME_NUMERO, lstRegistros.get(i).getNumero());
+            valores.put(SaudeContract.Unidade.COLUMN_NAME_FOTO, lstRegistros.get(i).getFoto());
+            long id = db.insert(SaudeContract.Unidade.TABLE_NAME, null, valores);
+            Log.i("DBINFO", "registro criado com id: " + id);
+        }
     }
 
 }

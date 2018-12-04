@@ -2,9 +2,8 @@ package dcc196.ufjf.br.maissaude.Modelo;
 
 public class Registro {
 
-    private int id;
-
-       private String nomeUnidade;
+    private long id;
+    private String nomeUnidade;
     private String CEPUsuario;
     private String CEPUnidade;
     private String tipo;
@@ -24,11 +23,11 @@ public class Registro {
         this.foto = foto;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
