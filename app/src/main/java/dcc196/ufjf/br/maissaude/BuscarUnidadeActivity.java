@@ -36,7 +36,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class CadastrarUnidadeActivity extends AppCompatActivity {
+public class BuscarUnidadeActivity extends AppCompatActivity {
 
     private  Registro registro,registro1,registro2,registro3,registro4;
     private  ArrayList<Registro> lstRegistros = new ArrayList<Registro>();
@@ -48,7 +48,6 @@ public class CadastrarUnidadeActivity extends AppCompatActivity {
     private TextView txtBairro;
     private TextView txtLocalidade;
     private TextView txtUF;
-
     private Spinner spTipos;
     private Button btnBuscaCEP;
 
@@ -63,7 +62,7 @@ public class CadastrarUnidadeActivity extends AppCompatActivity {
 
         dbHelper = new SaudeDBHelper(getApplicationContext());
 
-        CarregarBD();
+        //CarregarBD();
 
         ArrayAdapter<String> adapterTipo = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,tipos);
         adapterTipo.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
@@ -132,18 +131,7 @@ public class CadastrarUnidadeActivity extends AppCompatActivity {
                                Bitmap bitmap = BitmapFactory.decodeFile(imagem.getAbsolutePath());
                                ImageView imagemEscolhida = (ImageView) findViewById(R.id.imageView2);
                                imagemEscolhida.setImageBitmap(bitmap);
-                                /*
-                                if (imagem.exists())
-                                {
-                                    Bitmap bitmap = BitmapFactory.decodeFile(imagem.getAbsolutePath());
-                                    ImageView imagemEscolhida = (ImageView) findViewById(R.id.imageView2);
-                                    imagemEscolhida.setImageBitmap(bitmap);
-                                }else{
-                                    Bitmap bitmap = BitmapFactory.decodeFile("C:\\Users\\Rian Alves\\MaisSaude\\app\\src\\main\\res\\drawable\\logo.png");
-                                    ImageView imagemEscolhida = (ImageView) findViewById(R.id.imageView2);
-                                    imagemEscolhida.setImageBitmap(bitmap);
-                                }*/
-                                Log.d("CEP: ",cep.toString());
+                               Log.d("CEP: ",cep.toString());
 
                             }
                         }
