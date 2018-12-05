@@ -63,7 +63,7 @@ public class CadastrarUnidadeActivity extends AppCompatActivity {
 
         dbHelper = new SaudeDBHelper(getApplicationContext());
 
-        //CarregarBD();
+        CarregarBD();
 
         ArrayAdapter<String> adapterTipo = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,tipos);
         adapterTipo.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
@@ -128,7 +128,11 @@ public class CadastrarUnidadeActivity extends AppCompatActivity {
                                 txtLocalidade.setText(cep.getLocalidade().toString());
                                 txtUF.setText(cep.getUf().toString());
 
-                                File imagem = new File(reg.getFoto());
+                               File imagem = new File(reg.getFoto());
+                               Bitmap bitmap = BitmapFactory.decodeFile(imagem.getAbsolutePath());
+                               ImageView imagemEscolhida = (ImageView) findViewById(R.id.imageView2);
+                               imagemEscolhida.setImageBitmap(bitmap);
+                                /*
                                 if (imagem.exists())
                                 {
                                     Bitmap bitmap = BitmapFactory.decodeFile(imagem.getAbsolutePath());
@@ -138,7 +142,7 @@ public class CadastrarUnidadeActivity extends AppCompatActivity {
                                     Bitmap bitmap = BitmapFactory.decodeFile("C:\\Users\\Rian Alves\\MaisSaude\\app\\src\\main\\res\\drawable\\logo.png");
                                     ImageView imagemEscolhida = (ImageView) findViewById(R.id.imageView2);
                                     imagemEscolhida.setImageBitmap(bitmap);
-                                }
+                                }*/
                                 Log.d("CEP: ",cep.toString());
 
                             }
@@ -195,17 +199,17 @@ public class CadastrarUnidadeActivity extends AppCompatActivity {
         registro = new Registro("USF Mãe Preta", "25812050", "25815080", "Atenção Básica", 443, "");
         registro1 = new Registro("USF Mãe Preta", "25815080", "25815080", "Atenção Básica", 443, "");
         registro2 = new Registro("USF Mãe Preta", "25815070", "25815080", "Atenção Básica", 443, "");
-        registro3 = new Registro("UPA-Três Rios", "25812050", "25820180", "Pronto Atendimento", 10, "");
-        registro4 = new Registro("Central de Imunização", "25812050", "25805022 ", "Imunização", 300, "");
+        registro3 = new Registro("SAMU", "25800001", "25820180", "Pronto Atendimento", 10, "drawable/logo.png");
+        registro4 = new Registro("Central de Imunização", "25812050", "25870000 ", "Imunização", 300, "C:\\Users\\Rian Alves\\MaisSaude\\app\\src\\main\\res\\drawable\\logo.png");
 
-        lstRegistros.add(registro);
-        lstRegistros.add(registro1);
-        lstRegistros.add(registro2);
+        //lstRegistros.add(registro);
+       // lstRegistros.add(registro1);
+        //lstRegistros.add(registro2);
         lstRegistros.add(registro3);
-        lstRegistros.add(registro4);
+       lstRegistros.add(registro4);
 
 
-        for(int i =0 ; i<= lstRegistros.size(); i++) {
+        for(int i =0 ; i< lstRegistros.size(); i++) {
             SQLiteDatabase db = dbHelper.getWritableDatabase();
             ContentValues valores = new ContentValues();
             valores.put(SaudeContract.Unidade.COLUMN_NAME_UNIDADE,lstRegistros.get(i).getNomeUnidade()) ;
