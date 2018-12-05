@@ -24,6 +24,7 @@ import com.google.gson.GsonBuilder;
 import java.io.File;
 import java.util.ArrayList;
 
+import dcc196.ufjf.br.maissaude.DAO.RegistroDAO;
 import dcc196.ufjf.br.maissaude.DAO.SaudeContract;
 import dcc196.ufjf.br.maissaude.DAO.SaudeDBHelper;
 import dcc196.ufjf.br.maissaude.Modelo.CEP;
@@ -38,8 +39,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class BuscarUnidadeActivity extends AppCompatActivity {
 
-    private  Registro registro,registro1,registro2,registro3,registro4;
-    private  ArrayList<Registro> lstRegistros = new ArrayList<Registro>();
+   private  ArrayList<Registro> lstRegistros = new ArrayList<Registro>();
 
     private EditText edtCEP;
     private TextView txtNomeUnidade;
@@ -62,7 +62,8 @@ public class BuscarUnidadeActivity extends AppCompatActivity {
 
         dbHelper = new SaudeDBHelper(getApplicationContext());
 
-        //CarregarBD();
+        ApagarBanco();
+        CarregarBD();
 
         ArrayAdapter<String> adapterTipo = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,tipos);
         adapterTipo.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
@@ -184,18 +185,7 @@ public class BuscarUnidadeActivity extends AppCompatActivity {
     }
 
     public void CarregarBD() {
-        registro = new Registro("USF Mãe Preta", "25812050", "25815080", "Atenção Básica", 443, "");
-        registro1 = new Registro("USF Mãe Preta", "25815080", "25815080", "Atenção Básica", 443, "");
-        registro2 = new Registro("USF Mãe Preta", "25815070", "25815080", "Atenção Básica", 443, "");
-        registro3 = new Registro("SAMU", "25800001", "25820180", "Pronto Atendimento", 10, "drawable/logo.png");
-        registro4 = new Registro("Central de Imunização", "25812050", "25870000 ", "Imunização", 300, "C:\\Users\\Rian Alves\\MaisSaude\\app\\src\\main\\res\\drawable\\logo.png");
-
-        //lstRegistros.add(registro);
-       // lstRegistros.add(registro1);
-        //lstRegistros.add(registro2);
-        lstRegistros.add(registro3);
-       lstRegistros.add(registro4);
-
+       lstRegistros = RegistroDAO.CarregarDadosUnidades();
 
         for(int i =0 ; i< lstRegistros.size(); i++) {
             SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -209,6 +199,13 @@ public class BuscarUnidadeActivity extends AppCompatActivity {
             long id = db.insert(SaudeContract.Unidade.TABLE_NAME, null, valores);
             Log.i("DBINFO", "registro criado com id: " + id);
         }
+    }
+
+    public void ApagarBanco()
+    {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.delete(SaudeContract.Unidade.TABLE_NAME,null,null);
+        Log.i("DBINFO", "Banco Apagado ");
     }
 
 }
