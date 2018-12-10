@@ -16,7 +16,7 @@ public interface APIViaCEP {
                                                  @Path("cidade") String cidade,
                                                  @Path("endereco") String endereco);
 
-    /* Retorna apenas um objeto CEP */
+
     @GET("{CEP}/json/")
     Call<CEP> getEnderecoByCEP(@Path("CEP") String CEP);
 }

@@ -111,6 +111,7 @@ public class BuscarUnidadeActivity extends AppCompatActivity {
                 final Registro reg = buscaUnidade(edtCEP.getText().toString(),spTipos.getSelectedItem().toString());
 
                     Call<CEP> callDadosCEP = serviceCEP.getEnderecoByCEP(reg.getCEPUnidade());
+
                     callDadosCEP.enqueue(new Callback<CEP>() {
                         @Override
                         public void onResponse(Call<CEP> call, Response<CEP> response) {
@@ -120,22 +121,24 @@ public class BuscarUnidadeActivity extends AppCompatActivity {
                                         "Erro, este CEP não está cadastrado",
                                         Toast.LENGTH_LONG).show();
                             } else{
-                                CEP cep = response.body();
-                                txtNomeUnidade.setText(reg.getNomeUnidade());
-                                txtNumero.setText(String.valueOf(reg.getNumero()));
-                                txtLogradouro.setText(cep.getLogradouro().toString());
-                                txtBairro.setText(cep.getBairro().toString());
-                                txtLocalidade.setText(cep.getLocalidade().toString());
-                                txtUF.setText(cep.getUf().toString());
 
-                               File imagem = new File(reg.getFoto());
-                               Bitmap bitmap = BitmapFactory.decodeFile(imagem.getAbsolutePath());
-                               ImageView imagemEscolhida = (ImageView) findViewById(R.id.imageView2);
-                               imagemEscolhida.setImageBitmap(bitmap);
-                               Log.d("CEP: ",cep.toString());
+                                    CEP cep = response.body();
+                                    txtNomeUnidade.setText( reg.getNomeUnidade() );
+                                    txtNumero.setText( String.valueOf( reg.getNumero() ) );
+                                    txtLogradouro.setText( cep.getLogradouro().toString() );
+                                    txtBairro.setText( cep.getBairro().toString() );
+                                    txtLocalidade.setText( cep.getLocalidade().toString() );
+                                    txtUF.setText( cep.getUf().toString() );
+
+                                    File imagem = new File( reg.getFoto() );
+                                    Bitmap bitmap = BitmapFactory.decodeFile( imagem.getAbsolutePath() );
+                                    ImageView imagemEscolhida = (ImageView) findViewById( R.id.imageView2 );
+                                    imagemEscolhida.setImageBitmap( bitmap );
+                                    Log.d( "CEP: ", cep.toString() );
 
                             }
                         }
+
 
                         @Override
                         public void onFailure(Call<CEP> call, Throwable t) {
